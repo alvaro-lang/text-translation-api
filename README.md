@@ -31,9 +31,21 @@ pip install -r requirements.txt
 
 ### Register
 
+Route:
+
 ```
 api/register
 ```
+
+Input:
+
+```
+{
+    "username": "",
+    "password": ""
+}
+```
+
 
 ### Login
 
