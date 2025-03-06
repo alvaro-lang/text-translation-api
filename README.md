@@ -2,7 +2,7 @@
 
 Python version: Python 3.9.6
 
-API made in Django with the app Django Rest Framework.
+API with Django Rest Framework.
 
 ---
 
