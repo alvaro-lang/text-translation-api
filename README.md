@@ -73,6 +73,8 @@ Input:
 
 ### Translations history
 
+Get your user account's translation history
+
 ```
 api/translation/history
 ```

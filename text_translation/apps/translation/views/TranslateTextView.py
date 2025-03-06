@@ -2,8 +2,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.conf import settings
-from openai import OpenAI
+import google.generativeai as genai
 
+from ..models.History import History
 from ..serializers.TranslateTextSerializer import TranslateTextSerializer
 
 @api_view(['POST'])
@@ -15,24 +16,24 @@ def translate_text(request):
         language = serializer.validated_data['language']
         style = serializer.validated_data['style']
 
-        prompt = f"Translate {style} into {language} this text: {source_text}"
-
-        input_tokens = len(prompt) / 4
-        max_tokens = int(input_tokens * 2)
+        prompt = f"Translate {style} into {language} the following text literally, without explanation or interpretation and with only one answer: {source_text}"
 
         try:
-            client = OpenAI(api_key=settings.OPENAI_API_KEY)
-            response = client.chat.completions.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "user", "content": prompt}
-                ],
-                max_tokens=max_tokens
-            )
-            text_translated = response.choices[0].text.strip()
+            genai.configure(api_key=settings.GEMINI_API_KEY)
+            model = genai.GenerativeModel("gemini-1.5-pro-latest")
+            response = model.generate_content(prompt)
+
+            text_translated = response.text
+
+            if request.user.is_authenticated:
+                History.objects.create(
+                    user=request.user,
+                    source_text=source_text,
+                    translated_text=text_translated
+                )
 
         except Exception as e:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
         return Response({'text_translated': text_translated}, status=status.HTTP_200_OK)
 
