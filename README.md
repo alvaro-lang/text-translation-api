@@ -34,7 +34,7 @@ pip install -r requirements.txt
 Route:
 
 ```
-api/register
+api/auth/register
 ```
 
 Input:
@@ -50,23 +50,29 @@ Input:
 ### Login
 
 ```
-api/token
+api/auth/login
 ```
 
-### Translate text formal
+### Translate text formal or informal
+
+Route:
 
 ```
-api/translate-formal
+api/translation/translate
 ```
 
-### Translate text informal
+Input:
 
 ```
-api/translate-informal
+{
+    "source_text": "",
+    "language": "",
+    "style": ""
+}
 ```
 
 ### Translations history
 
 ```
-api/translation-history
+api/translation/history
 ```
