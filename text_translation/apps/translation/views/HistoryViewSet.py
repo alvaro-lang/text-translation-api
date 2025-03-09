@@ -10,4 +10,4 @@ class HistoryViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return History.objects.filter(user=self.request.user)
+        return History.objects.filter(user=self.request.user).order_by('-id')[:5]

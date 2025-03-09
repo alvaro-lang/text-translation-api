@@ -73,7 +73,7 @@ Input:
 
 ### Translations history
 
-Get your user account's translation history
+Get the last 5 translations of your user account
 
 ```
 api/translation/history
