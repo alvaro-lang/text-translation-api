@@ -36,7 +36,7 @@ if DEBUG:
     ]
 else:
     CORS_ALLOWED_ORIGINS = [
-        "https://text-translation-ui.netlify.app",
+        "https://text-translation-api-60tx.onrender.com",
     ]
 
 # Application definition
