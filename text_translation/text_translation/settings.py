@@ -26,12 +26,18 @@ SECRET_KEY = config('SECRET_KEY')
 GEMINI_API_KEY = config('GEMINI_API_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = []
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-]
+ALLOWED_HOSTS = ['https://text-translation-ui.netlify.app']
+
+if DEBUG:
+    CORS_ALLOWED_ORIGINS = [
+        "http://localhost:3000",
+    ]
+else:
+    CORS_ALLOWED_ORIGINS = [
+        "https://text-translation-ui.netlify.app",
+    ]
 
 # Application definition
 
