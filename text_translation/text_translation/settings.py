@@ -28,7 +28,7 @@ GEMINI_API_KEY = config('GEMINI_API_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = ['https://text-translation-api-60tx.onrender.com']
+ALLOWED_HOSTS = ['text-translation-api-60tx.onrender.com', 'localhost', '127.0.0.1']
 
 if DEBUG:
     CORS_ALLOWED_ORIGINS = [
