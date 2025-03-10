@@ -29,6 +29,10 @@ python -m venv <venv_name>
 pip install -r requirements.txt
 ```
 
+### 4. Create .env file
+
+Copy the content of '.env.example' to an .env file
+
 ## Endpoints
 
 ### Register
